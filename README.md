@@ -88,7 +88,10 @@ The application is crafted with a high-contrast, sleek modern interface prioriti
 │       ├── PrintExecutiveKPIs.jsx      # Hard-copy friendly presence KPI blocks
 │       ├── PrintPathologyDistribution.jsx # Hard-copy friendly table mapping pathology metrics
 │       └── PrintIncidentRegistries.jsx # Hard-copy friendly full list of selected records
-├── package.json              # Main project dependencies
+├── node-domexception-mock/   # Local non-deprecated implementation resolving transitive warnings
+│   ├── package.json          # Mock package description
+│   └── index.js              # Exports platform's native globalThis.DOMException
+├── package.json              # Main project dependencies with npm overrides configured
 ├── vite.config.ts            # Vite compiler configuration
 └── metadata.json             # Global application configuration and capability metadata
 ```

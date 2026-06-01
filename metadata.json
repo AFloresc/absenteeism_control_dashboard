@@ -1,0 +1,6 @@
+{
+  "name": "Sick Leave Analytics Dashboard",
+  "description": "Comprehensive workforce analytics and sick leave tracker for multiple companies, departments, work centers, and pathologies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
