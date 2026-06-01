@@ -23,6 +23,20 @@ export default function PersonStatsMobileItem({ person, isExpanded, onToggle }) 
   const isChronicRecurrent = person.totalLeavesCount >= 2;
   const isHighImpactDays = person.totalDaysLost > 25;
 
+  const getBradfordColor = (score) => {
+    if (score >= 500) return 'error.main'; 
+    if (score >= 125) return 'warning.main'; 
+    if (score >= 27) return 'info.main'; 
+    return 'text.secondary';
+  };
+
+  const getBradfordLabel = (score) => {
+    if (score >= 500) return 'High';
+    if (score >= 125) return 'Med';
+    if (score >= 27) return 'Low';
+    return 'Opt';
+  };
+
   return (
     <Card 
       sx={{ 
@@ -88,17 +102,23 @@ export default function PersonStatsMobileItem({ person, isExpanded, onToggle }) 
         </Box>
 
         <Grid container spacing={1} sx={{ backgroundColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : '#f8fafc', p: 1.5, borderRadius: '8px', border: '1px solid', borderColor: 'divider', mb: 1.5 }}>
-          <Grid size={4}>
-            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textTransform: 'uppercase', fontSize: '9px', fontWeight: 'bold' }}>Leave Cases</Typography>
+          <Grid size={3}>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textTransform: 'uppercase', fontSize: '9px', fontWeight: 'bold' }}>Cases</Typography>
             <Typography variant="body2" sx={{ fontWeight: '800', fontFamily: 'monospace' }}>{person.totalLeavesCount}</Typography>
           </Grid>
-          <Grid size={4}>
+          <Grid size={3}>
             <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textTransform: 'uppercase', fontSize: '9px', fontWeight: 'bold' }}>Days Lost</Typography>
-            <Typography variant="body2" sx={{ fontWeight: '800', fontFamily: 'monospace', color: isHighImpactDays ? 'error.main' : 'text.primary' }}>{person.totalDaysLost} d</Typography>
+            <Typography variant="body2" sx={{ fontWeight: '800', fontFamily: 'monospace', color: isHighImpactDays ? 'error.main' : 'text.primary' }}>{person.totalDaysLost}d</Typography>
           </Grid>
-          <Grid size={4}>
+          <Grid size={3}>
             <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textTransform: 'uppercase', fontSize: '9px', fontWeight: 'bold' }}>Avg/Case</Typography>
-            <Typography variant="body2" sx={{ fontWeight: '800', fontFamily: 'monospace' }}>{person.averageDays} d</Typography>
+            <Typography variant="body2" sx={{ fontWeight: '800', fontFamily: 'monospace' }}>{person.averageDays}d</Typography>
+          </Grid>
+          <Grid size={3}>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textTransform: 'uppercase', fontSize: '9px', fontWeight: 'bold' }}>Bradford</Typography>
+            <Typography variant="body2" sx={{ fontWeight: '900', fontFamily: 'monospace', color: getBradfordColor(person.bradfordIndex) }}>
+              {person.bradfordIndex} <span style={{ fontSize: '8px', fontWeight: '700' }}>({getBradfordLabel(person.bradfordIndex)})</span>
+            </Typography>
           </Grid>
         </Grid>
 

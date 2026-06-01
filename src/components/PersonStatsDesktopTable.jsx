@@ -37,13 +37,14 @@ export default function PersonStatsDesktopTable({
             <TableCell align="center" sx={{ fontWeight: '700', color: 'text.primary' }}>Leave Recurrences</TableCell>
             <TableCell align="center" sx={{ fontWeight: '700', color: 'text.primary' }}>Total Days Lost</TableCell>
             <TableCell align="center" sx={{ fontWeight: '700', color: 'text.primary' }}>Avg. Duration / Case</TableCell>
+            <TableCell align="center" sx={{ fontWeight: '700', color: 'text.primary' }}>Bradford Index</TableCell>
             <TableCell align="center" sx={{ fontWeight: '700', color: 'text.primary' }}>Impact Classification</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {filteredPeople.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={7} align="center" sx={{ py: 4 }}>
+              <TableCell colSpan={8} align="center" sx={{ py: 4 }}>
                 <Typography color="text.secondary" variant="body2">
                   No worker records found matching your query.
                 </Typography>

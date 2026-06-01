@@ -1,11 +1,25 @@
 import React from 'react';
-import { TableRow, TableCell, IconButton, Box, Typography, Chip, Collapse } from '@mui/material';
+import { TableRow, TableCell, IconButton, Box, Typography, Chip, Collapse, Tooltip } from '@mui/material';
 import { ChevronDown, ChevronUp, User, AlertTriangle, Activity, Award } from 'lucide-react';
 import PersonStatsRowExpanded from './PersonStatsRowExpanded.jsx';
 
 export default function PersonStatsRow({ person, isExpanded, onToggle }) {
   const isChronicRecurrent = person.totalLeavesCount >= 2;
   const isHighImpactDays = person.totalDaysLost > 25;
+
+  const getBradfordColor = (score) => {
+    if (score >= 500) return 'error.main'; 
+    if (score >= 125) return 'warning.main'; 
+    if (score >= 27) return 'info.main'; 
+    return 'text.secondary';
+  };
+
+  const getBradfordLabel = (score) => {
+    if (score >= 500) return 'High Concern';
+    if (score >= 125) return 'Med Concern';
+    if (score >= 27) return 'Low Concern';
+    return 'Optimal';
+  };
 
   return (
     <React.Fragment>
@@ -56,6 +70,18 @@ export default function PersonStatsRow({ person, isExpanded, onToggle }) {
           </Typography>
         </TableCell>
         <TableCell align="center"><Typography variant="body2">{person.averageDays} Days</Typography></TableCell>
+        <TableCell align="center">
+          <Tooltip title={`Bradford Factor: S² × D where S is Spells (${person.totalLeavesCount}) and D is Days (${ person.totalDaysLost }). Score: ${ person.bradfordIndex }.`} arrow>
+            <Box sx={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', px: 1 }}>
+              <Typography variant="body2" sx={{ fontWeight: '850', color: getBradfordColor(person.bradfordIndex) }}>
+                {person.bradfordIndex}
+              </Typography>
+              <Typography variant="caption" sx={{ fontSize: '9px', fontWeight: '700', color: getBradfordColor(person.bradfordIndex), opacity: 0.85 }}>
+                {getBradfordLabel(person.bradfordIndex)}
+              </Typography>
+            </Box>
+          </Tooltip>
+        </TableCell>
         <TableCell align="center" onClick={(e) => e.stopPropagation()}>
           <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'center' }}>
             {isChronicRecurrent && (
@@ -72,7 +98,7 @@ export default function PersonStatsRow({ person, isExpanded, onToggle }) {
       </TableRow>
 
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
           <Collapse in={isExpanded} timeout="auto" unmountOnExit>
             <PersonStatsRowExpanded person={person} />
           </Collapse>

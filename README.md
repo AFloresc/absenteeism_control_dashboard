@@ -35,8 +35,14 @@ The application is crafted with a high-contrast, sleek modern interface prioriti
 - **Date Safety Computing**: Smart validation guaranteeing start-dates precede end-dates, with real-time automatic day-count estimates.
 - **Interactive Progress Notes**: Allows case officers to enter workstations restrictions and specific clinical rehabilitation notes.
 
-### 4. Patient-Centric Recurrence Analytics
+### 4. Patient-Centric Recurrence Analytics & Bradford Index Profile
 - Deep-dive profiles grouping absences by individual employee names.
+- Calculates and visualizes the **Bradford Index** (Bradford Factor formula: $S^2 \times D$, where $S$ is separate absence spells and $D$ is total days lost) to flag short-term recurrent disruption profiles.
+- Features dynamic, color-coded risk threshold tiers:
+  - **High Concern** ($B \ge 500$) - Critical recurrent disruption risk.
+  - **Medium Concern** ($125 \le B < 500$) - Moderately high frequency patterns.
+  - **Low Concern** ($27 \le B < 125$) - Minor recurring tendencies.
+  - **Optimal** ($B < 27$) - Low/normal operational absence pattern.
 - Identifies and tags records with smart risk flags:
   - `Chronic Recurrency`: Flags employees with 2 or more separate leave incidents.
   - `Severe Lost Days`: Highlights cases surpassing 25 cumulative lost workdays.

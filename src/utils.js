@@ -115,6 +115,7 @@ export function calculatePersonKPIs(leaves) {
       totalLeavesCount: value.count,
       totalDaysLost: value.days,
       averageDays: value.count > 0 ? parseFloat((value.days / value.count).toFixed(1)) : 0,
+      bradfordIndex: value.count * value.count * value.days,
       leaves: value.leaves,
     };
   }).sort((a, b) => b.totalDaysLost - a.totalDaysLost); // Sort by highest gravity/impact
