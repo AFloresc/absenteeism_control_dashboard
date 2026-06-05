@@ -130,4 +130,9 @@ To spin up the project locally:
 
 ---
 
+## 🚀 Deployment site
+🌐 [Live site](hhttps://absenteeism-manager.netlify.app/)
+
+---
+
 *This application is optimized for modern web browsers, ensuring reliable, fluid interactions across all dynamic administrative dashboards.*
