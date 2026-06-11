@@ -48,9 +48,9 @@ The application is crafted with a high-contrast, sleek modern interface prioriti
   - `Severe Lost Days`: Highlights cases surpassing 25 cumulative lost workdays.
 - Interactive nested historical timelines showing past cases and officer notes for targeted workplace accommodation plans.
 
-### 5. Automated PDF & Excel Document Generator
+### 5. Automated PDF, Excel & JSON Document Generator
 - Simulates professional reports for clinical safety coordinators.
-- Generates high-fidelity structured summaries, pathology breakdowns, and detailed action lists exportable to Excel or formatted PDF sheets.
+- Generates high-fidelity structured summaries, pathology breakdowns, and detailed action lists exportable to Excel (CSV), formatted PDF sheets, or raw client-valid JSON files.
 
 ---
 

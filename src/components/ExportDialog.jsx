@@ -39,6 +39,12 @@ export default function ExportDialog({
     triggerFileDownload(filename, csvContent);
   };
 
+  const handleJsonExport = () => {
+    const jsonContent = JSON.stringify(targetRecords, null, 2);
+    const filename = `SanaCorp_Sick_Leaves_${exportScope === 'filtered' ? activeCompany.replace(/\s+/g, '_') : 'All_Companies'}_${new Date().toISOString().split('T')[0]}.json`;
+    triggerFileDownload(filename, jsonContent, 'application/json;charset=utf-8;');
+  };
+
   const handlePrintPDF = () => {
     // Generate active session print trigger
     window.print();
@@ -65,7 +71,7 @@ export default function ExportDialog({
                 Export & Reports Hub
               </Typography>
               <Typography variant="caption" color="text.secondary" sx={{ fontWeight: '600' }}>
-                Download structured spreadsheets or compile high-density PDF reports
+                Download structured spreadsheets, JSON datasets, or compile high-density PDF reports
               </Typography>
             </Box>
           </Box>
@@ -88,10 +94,11 @@ export default function ExportDialog({
 
           {/* Action grid */}
           <Grid container spacing={3.5}>
-            {/* Excel Column */}
+            {/* Excel & JSON Column */}
             <ExportExcelSection 
               targetRecordsCount={targetRecords.length}
               onExcelExport={handleExcelExport}
+              onJsonExport={handleJsonExport}
             />
 
             {/* Splitter border inside custom dialog */}
